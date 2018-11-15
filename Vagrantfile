@@ -1,9 +1,7 @@
 # -*- mode: ruby -*-
 # vim: ft=ruby
 
-
 # ---- Configuration variables ----
-
 GUI               = false # Enable/Disable GUI
 RAM               = 128   # Default memory size in MB
 
@@ -16,10 +14,12 @@ NETMASK           = "255.255.255.0"
 # See: https://wiki.debian.org/Teams/Cloud/VagrantBaseBoxes
 BOX               = 'debian/jessie64'
 
-
 HOSTS = {
-   "web" => [NETWORK+"10", RAM, GUI, BOX],
-   "db" => [NETWORK+"11", RAM, GUI, BOX],
+   "web1" => [NETWORK+"11", RAM, GUI, BOX],
+   "web2" => [NETWORK+"12", RAM, GUI, BOX],
+   "db1" => [NETWORK+"21", RAM, GUI, BOX],
+   "db2" => [NETWORK+"22", RAM, GUI, BOX],
+   "ci" => [NETWORK+"30", RAM, GUI, BOX],
 }
 
 ANSIBLE_INVENTORY_DIR = 'ansible/inventory'
@@ -49,7 +49,9 @@ Vagrant.configure(2) do |config|
     ansible.inventory_dir=ANSIBLE_INVENTORY_DIR
     # optional: add a group listing all vagrant machines
     ansible.groups = {
-      'secondGroup' => [ "db" ],
+      'web' => [ "web1", "web2" ],
+      'db' => [ "db1", "db2" ],
+      'ci' => [ "ci" ],
     #  '_provided_by_vagrant_'=> HOSTS.keys,
     }
   end
