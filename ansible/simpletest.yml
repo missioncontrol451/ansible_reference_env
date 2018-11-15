@@ -1,0 +1,28 @@
+---
+
+- hosts: all
+  gather_facts: false
+
+  tasks:
+  - name: Show the groups to see if Vagrant set them up correctly
+    debug: var=groups
+
+  #- debug: var=allGroupsVar
+  #- debug: var=groupVar
+  #- debug: var=hostVar
+
+- name: Run the webtier group of hosts
+  hosts: webtier
+  gather_facts: true
+
+  tasks:
+  - name: Check if host is in web group
+    debug: msg="Host is in webtier group"
+
+- name: Run the dbtier group of hosts
+  hosts: dbtier
+  gather_facts: false
+
+  tasks:
+  - name: Check if host is in the dbtier group
+    debug: msg="Host is in dbtier group"

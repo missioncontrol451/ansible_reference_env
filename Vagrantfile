@@ -45,15 +45,15 @@ Vagrant.configure(2) do |config|
     end
   end # HOSTS-each
 
-  config.vm.provision "vai" do |ansible|
-    ansible.inventory_dir=ANSIBLE_INVENTORY_DIR
-    # optional: add a group listing all vagrant machines
-    ansible.groups = {
-      'web' => [ "web1", "web2" ],
-      'db' => [ "db1", "db2" ],
-      'ci' => [ "ci" ],
-    #  '_provided_by_vagrant_'=> HOSTS.keys,
-    }
-  end
+  #config.vm.provision "vai" do |ansible|
+  #  ansible.inventory_dir=ANSIBLE_INVENTORY_DIR
+  #  # optional: add a group listing all vagrant machines
+  #  ansible.groups = {
+  #    'web' => [ "web1", "web2" ],
+  #    'db' => [ "db1", "db2" ],
+  #    'ci' => [ "ci" ],
+  #  #  '_provided_by_vagrant_'=> HOSTS.keys,
+  #  }
+  #end
 
 end

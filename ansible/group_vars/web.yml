@@ -1,0 +1,3 @@
+# file: group_vars/web
+ntp: ntp-atlanta.example.com
+backup: backup-atlanta.example.com
